@@ -1,6 +1,8 @@
 package AbstractClass.MidTerm;
 
-public class Experience extends Employee{
+import java.util.Scanner;
+
+public class Experience extends Employee {
 	private int YearOfExp;
 	private String ProSkill;
 
@@ -37,6 +39,53 @@ public class Experience extends Employee{
 		this.ProSkill = proSkill;
 	}
 
+	@Override
+	public void input() throws Exception{
+		System.out.println("Input employee's information");
+		super.input();
 
+		Scanner scanner = new Scanner(System.in);
+
+		// Input years of exp
+		System.out.println("Enter years of experience: ");
+		do {
+			try {
+				setYearOfExp(scanner.nextInt());
+				scanner.nextLine();
+			} catch (Exception ex) {
+				System.out.println("Try again: ");
+				scanner.nextLine();
+			}
+		} while (this.YearOfExp == 0);
+
+
+		// Input Professional skills
+		System.out.println("Enter employee's professional skills: ");
+		do {
+			try {
+				setProSkill(scanner.nextLine());
+			} catch (Exception ex) {
+				System.out.println("Try again: ");
+				scanner.nextLine();
+			}
+		} while (this.ProSkill == null);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("Employee: ");
+		sb.append("\nID: ").append(this.getID());
+		sb.append("\nFullname: ").append(this.getFullname());
+		sb.append("\nBirthday: ").append(this.getBirthday());
+		sb.append("\nPhone: ").append(this.getPhone());
+		sb.append("\nEmail: ").append(this.getEmail());
+		sb.append("\nEmployee type: ").append(this.getEmployee_type());
+		sb.append("\nYears of experience: ").append(YearOfExp);
+		sb.append("\nProfessional skills: ").append(ProSkill);
+		
+		return sb.toString();
+	}
 	
 }
