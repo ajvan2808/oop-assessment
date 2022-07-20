@@ -75,7 +75,7 @@ public class Experience extends Employee {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("Employee: ");
+		sb.append("Employee ");
 		sb.append("\nID: ").append(this.getID());
 		sb.append("\nFullname: ").append(this.getFullname());
 		sb.append("\nBirthday: ").append(this.getBirthday());
