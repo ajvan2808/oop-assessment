@@ -54,7 +54,7 @@ public class Fresher extends Employee{
 
 	@Override
 	public void input() throws Exception {
-		System.out.println("Input employees's information: ");
+		System.out.println("------ Input Fresher information ------");
 		super.input();
 
 		Scanner sc = new Scanner(System.in);

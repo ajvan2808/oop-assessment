@@ -227,13 +227,23 @@ abstract public class Employee {
 
 	public void input() throws Exception{
 		Scanner sc = new Scanner(System.in);
+		int ursChoice = 0;
 
 		System.out.println("Enter '1' to generate employee ID: ");
-		do {
-			setID();
-			System.out.println("New employee with ID are set: " + getID());
-		} while (this.ID == null);
+		ursChoice = sc.nextInt();
+		switch (ursChoice) {
+			case 1:
+				do {
+					setID();
+					System.out.println("New employee with ID are set: " + getID());
+				} while (this.ID == null);
+				break;
+			default:
+				break;
+		}
 
+		sc.nextLine();
+		
 		System.out.println("Enter employee fullname: ");
 		do {
 			try {
@@ -278,18 +288,31 @@ abstract public class Employee {
 		} while (this.Email == null);
 
 
-		System.out.println("Enter employee type [" + Experience_type
-													+ Fresher_type
-													+ Intern_type + "]:");
+		System.out.println("Enter employee type (1: Experience, 2: Fresher, 3: Intern ): ");
+		int UserInput = 0;
+		
 		do {
 			try {
-				setEmployee_type(sc.nextLine());
+				UserInput = sc.nextInt();
+				switch (UserInput) {
+					case 1:
+						setEmployee_type("Experience");
+						break;
+					case 2:
+						setEmployee_type("Fresher");
+						break;
+					case 3:
+						setEmployee_type("Intern");
+						break;
+					default:
+						sc.nextLine();
+						break;
+				}
 			} catch (Exception ex) {
 				System.out.println("Try again: ");
-				sc.nextLine();
+				sc.nextInt();
 			}
 		} while (this.Employee_type == null);
-
 	}
 
 

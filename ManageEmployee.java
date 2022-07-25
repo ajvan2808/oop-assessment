@@ -30,7 +30,7 @@ public class ManageEmployee {
 	void input() throws Exception {
 		Employee employee = null;
 		Scanner sc = new Scanner(System.in);
-		int choice = 0;
+		int choice;
 
 		do {
 			System.out.println("1: Experience | 2: Fresher | 3: Intern | 0: Exit ");
@@ -50,12 +50,11 @@ public class ManageEmployee {
 				case 3:
 					employee = new Intern();
 					break;
-				default:
-					employee = null;
-					choice = 0;
+				case 0:
+					System.out.println("Exit..");
+					break;
 			}
-			
-			if (employee != null) {
+			if (employee != null && choice != 0) {
 				employee.input();
 				this.listofEmployees.add(employee);
 			}
@@ -102,38 +101,30 @@ public class ManageEmployee {
 
 
 	public static void main(String[] args) throws Exception {
-		Employee employee = new Experience();
-		employee.input();
-		employee.showInfo();
+		ManageEmployee management = new ManageEmployee();
+		management.input();
+		management.output();
 
-		employee = new Fresher();
-		employee.input();
-		employee.showInfo();
-
-		employee = new Intern();
-		employee.input();
-		employee.showInfo();
-
-		List<Employee> listEmployees = new ArrayList();
-		try {
-			listEmployees.add(new Experience("Nguyen Van A", "1997/08/20", 
-										"0909876500", "nguyenvana@gmail.com", 
-										"Experience", 5, "Design Patterns"));
-			listEmployees.add(new Experience("Van Hoang B", "1999/02/29", 
-											"090983201", "vanhb@gmail.com", 
-										"Experience", 10, "Python"));
-			listEmployees.add(new Experience("Nguyen Be Bi", "1989/12/24", 
-										"0978234403", "bbnguyen@gmail.com", 
-										"Experience", 8, "Java"));
-		} catch (Exception e) {
-			Logger.getLogger(ManageEmployee.class.getName()).log(Level.SEVERE, null, e);
-		}
+		// List<Employee> listEmployees = new ArrayList();
+		// try {
+		// 	listEmployees.add(new Experience("Nguyen Van A", "1997/08/20", 
+		// 								"0909876500", "nguyenvana@gmail.com", 
+		// 								"Experience", 5, "Design Patterns"));
+		// 	listEmployees.add(new Experience("Van Hoang B", "1999/02/29", 
+		// 									"090983201", "vanhb@gmail.com", 
+		// 								"Experience", 10, "Python"));
+		// 	listEmployees.add(new Experience("Nguyen Be Bi", "1989/12/24", 
+		// 								"0978234403", "bbnguyen@gmail.com", 
+		// 								"Experience", 8, "Java"));
+		// } catch (Exception e) {
+		// 	Logger.getLogger(ManageEmployee.class.getName()).log(Level.SEVERE, null, e);
+		// }
 
 
-		// OUTPUT INFO
-		for (Employee emp : listEmployees) {
-			emp.showInfo();
-		}
+		// // OUTPUT INFO
+		// for (Employee emp : listEmployees) {
+		// 	emp.showInfo();
+		// }
 
 	}
 }

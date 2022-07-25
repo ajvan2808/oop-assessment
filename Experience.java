@@ -41,7 +41,7 @@ public class Experience extends Employee {
 
 	@Override
 	public void input() throws Exception{
-		System.out.println("Input employee's information");
+		System.out.println("----- Input Experience information -----");
 		super.input();
 
 		Scanner scanner = new Scanner(System.in);
