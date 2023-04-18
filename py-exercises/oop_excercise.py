@@ -69,20 +69,51 @@ class Fraction:
     def __init__(self, numberator, deciminator=1):
         self.nr = numberator
         self.dr = abs(deciminator)
+        # make the denominator positive if it is negative. For example  -2/-3 should be changed to 2/3 and 2/-3 to -2/3.
+        if self.dr < 0:
+            self.nr *= -1
+            self.dr *= -1
+        self._reduce()
 
     def show(self):
         print(f"{self.nr} / {self.dr}")
 
-    def multiply(self, fraction):
-        if isinstance(fraction, int):
-            fraction = Fraction(fraction)
-        return Fraction(self.nr * fraction.nr, self.dr * fraction.dr)
+    # Multiply then reduce
+    def multiply(self, other):
+        if isinstance(other, int):
+            other = Fraction(other)
+        f = Fraction(self.nr * other.nr, self.dr * other.dr)
+        f._reduce()
+        return f
 
+    # Add then reduce
     def add(self, frac):
         if isinstance(frac, int):
             frac = Fraction(frac)
+        f = Fraction(self.nr * frac.dr + frac.nr * self.dr, self.dr * frac.dr)
+        f._reduce()
+        return f
 
-        return Fraction(self.nr * frac.dr + frac.nr * self.dr, self.dr * frac.dr)
+    @staticmethod
+    def hcf(x, y):
+        x = abs(x)
+        y = abs(y)
+        s = x if x > y else y
+        while s > 0:
+            if x % s == 0 and y % s == 0:
+                break
+            s -= 1
+        return s
+
+    # To reduce a Fraction to its lowest terms you have to divide the numerator and denominator
+    # by the highest common factor.
+    def _reduce(self):
+        h = Fraction.hcf(self.nr, self.dr)
+        if h == 0:
+            return
+        # floor division
+        self.dr //= h
+        self.nr //= h
 
 
 class Product:
@@ -159,3 +190,5 @@ if __name__ == '__main__':
     print(p1.selling_price)
     print(p3._discount)
 
+    print('\n----- Static method -----')
+    print(f1.hcl(3, 4))
