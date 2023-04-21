@@ -45,3 +45,43 @@ class Employee(Person):
 emp = Employee('Sun', 20, 'HCMC', '0908899900', 2500, 'HN', '028997788')
 emp.contact_detail()
 emp.cal_tax()
+
+
+# MULTIPLE INHERITANCE
+class Person:
+    def greet(self):
+        print('Hello')
+
+
+class Teacher:
+    # pass
+    def greet(self):
+        print('Hello')
+
+
+class Student:
+    # pass
+    def greet(self):
+        print('Hello')
+
+
+class TeachingAssitant(Student, Teacher):
+    # pass
+    def greet(self):
+        print('Hello')
+
+
+x = TeachingAssitant()
+x.greet()
+
+# Get base classes
+print(TeachingAssitant.__bases__)
+
+# Get Method resolution order
+print(TeachingAssitant.__mro__)     # return tuple
+# OR
+print(help(TeachingAssitant))
+print(TeachingAssitant.mro())   # return list
+
+# To find the mro through an instance dynamically we can use the dunder class attribute before
+print(x.__class__.__mro__)
