@@ -1,3 +1,4 @@
+"""
 class Person:
 
     def __init__(self, name, age, address, phone):
@@ -85,3 +86,57 @@ print(TeachingAssitant.mro())   # return list
 
 # To find the mro through an instance dynamically we can use the dunder class attribute before
 print(x.__class__.__mro__)
+"""
+
+
+#   MRO & super()
+#   super() follows MRO, and it does not always call the parent of a class
+#   it calls the next inline MRO
+#   Using super to call the base classes prevent repetition (repetition makes it hard to debug)
+class Human:
+    def greeting(self):
+        print("I'm Human")
+
+
+class Female(Human):
+    # pass
+    def greeting(self):
+        # Human.greeting(self)
+        super().greeting()
+        print("I'm a female")
+
+
+class Mother(Human):
+    # pass
+    def greeting(self):
+        # Human.greeting(self)
+        super().greeting()
+        print("I'm a mother")
+
+
+class Teacher(Female, Mother):
+    # pass
+    def greeting(self):
+        # Female.greeting(self)
+        # Mother.greeting(self)
+        super().greeting()
+        print("I'm also a teacher")
+
+
+x = Teacher()
+x.greeting()
+
+'''
+I'm Human
+I'm a female
+I'm Human   # called twice
+I'm a mother
+I'm also a teacher
+
+-- with super()
+
+I'm Human
+I'm a mother
+I'm a female
+I'm also a teacher
+'''
